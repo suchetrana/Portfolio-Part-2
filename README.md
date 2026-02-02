@@ -1,105 +1,170 @@
-# Portfolio
+# Suchet Rana — Portfolio
 
-A modern, responsive portfolio website built with Next.js 16, TypeScript, and Tailwind CSS 4.
+> A distinctive, non-generic developer portfolio with a **"Bunker / Technocrat"** aesthetic. Built with Next.js 16, Tailwind CSS 4, and Framer Motion.
 
-## 🚀 Tech Stack
+![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38bdf8?style=flat-square&logo=tailwindcss)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-ff0055?style=flat-square&logo=framer)
 
-- **Framework:** Next.js 16 (App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS 4
-- **Icons:** Lucide React
-- **Theme:** next-themes (dark/light mode)
+---
+
+## ✨ Features
+
+- **Industrial Design System** — Sharp corners, structural grid patterns, monospace typography
+- **Safety Orange Accents** — One strong accent color for high-contrast callouts
+- **Dark/Light Mode** — Smooth 500ms theme transitions
+- **Orchestrated Motion** — Staggered reveals, parallax scrolling, mechanical easings
+- **Fully Responsive** — Mobile-first design with desktop enhancements
+- **SEO Optimized** — Open Graph, Twitter Cards, JSON-LD ready
+
+---
+
+## 🛠️ Tech Stack
+
+| Category | Technology |
+|----------|------------|
+| **Framework** | Next.js 16 (App Router, Turbopack) |
+| **Language** | TypeScript 5 |
+| **Styling** | Tailwind CSS 4 (OKLCH color spaces) |
+| **Animation** | Framer Motion 11 |
+| **Icons** | Lucide React |
+| **Fonts** | Fraunces (Headings), Outfit (Body), JetBrains Mono (Code) |
+| **Theme** | next-themes |
+
+---
 
 ## 📁 Project Structure
 
 ```
-portfolio/
-├── src/
-│   ├── app/                    # Next.js App Router
-│   │   ├── api/                # API routes
-│   │   │   └── contact/        # Contact form endpoint
-│   │   ├── globals.css         # Global styles & CSS variables
-│   │   ├── layout.tsx          # Root layout with metadata
-│   │   ├── page.tsx            # Homepage
-│   │   └── not-found.tsx       # 404 page
-│   ├── components/
-│   │   ├── layout/             # Layout components
-│   │   │   ├── navbar.tsx      # Navigation bar
-│   │   │   └── footer.tsx      # Site footer
-│   │   ├── sections/           # Page sections
-│   │   │   ├── hero.tsx        # Hero section
-│   │   │   ├── about.tsx       # About section
-│   │   │   ├── skills.tsx      # Skills section
-│   │   │   ├── projects.tsx    # Projects section
-│   │   │   └── contact.tsx     # Contact form
-│   │   ├── ui/                 # Reusable UI components
-│   │   │   └── project-card.tsx
-│   │   └── providers/          # Context providers
-│   │       └── theme-provider.tsx
-│   ├── lib/                    # Utilities
-│   │   └── utils.ts            # Helper functions
-│   └── types/                  # TypeScript types
-│       └── index.ts
-├── public/                     # Static assets
-│   ├── projects/               # Project images
-│   ├── images/                 # General images
-│   └── assets/                 # CV/PDF files
-├── next.config.ts
-├── tailwind.config.ts
-├── tsconfig.json
-└── package.json
+src/
+├── app/
+│   ├── api/contact/       # Contact form API route
+│   ├── globals.css        # Theme variables & utilities
+│   ├── layout.tsx         # Root layout with metadata
+│   ├── page.tsx           # Homepage composition
+│   └── not-found.tsx      # Custom 404 page
+├── components/
+│   ├── layout/            # Navbar, Footer
+│   ├── sections/          # Hero, About, Skills, Projects, Contact
+│   ├── ui/                # Motion wrappers, reusable primitives
+│   └── providers/         # ThemeProvider
+├── data/
+│   └── config.ts          # Site config, projects, skills data
+├── lib/
+│   └── utils.ts           # cn() helper
+└── types/
+    └── index.ts           # TypeScript interfaces
 ```
 
-## 🛠️ Getting Started
+---
 
-1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-2. **Set up environment variables:**
-   ```bash
-   cp .env.example .env.local
-   # Edit .env.local with your values
-   ```
-
-3. **Run development server:**
-   ```bash
-   npm run dev
-   ```
-
-4. **Open [http://localhost:3000](http://localhost:3000)**
-
-## 📝 Customization
-
-### Personal Information
-- Update metadata in `src/app/layout.tsx`
-- Edit content in section components under `src/components/sections/`
-- Replace placeholder links in `navbar.tsx` and `footer.tsx`
-
-### Projects
-- Edit the `projects` array in `src/components/sections/projects.tsx`
-- Add project images to `public/projects/`
-
-### Skills
-- Modify `skillCategories` in `src/components/sections/skills.tsx`
-
-### Styling
-- CSS variables are defined in `src/app/globals.css`
-- Customize colors, fonts, and theme values
-
-### Contact Form
-- Set up SMTP credentials in `.env.local`
-- Uncomment email sending code in `src/app/api/contact/route.ts`
-
-## 🚀 Deployment
+## 🚀 Quick Start
 
 ```bash
+# Clone the repository
+git clone https://github.com/suchetrana/Portfolio-Part-2.git
+cd Portfolio-Part-2
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
 npm run build
 ```
 
-Deploy to [Vercel](https://vercel.com) for the best Next.js experience.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
+
+---
+
+## ⚙️ Configuration
+
+### Personal Data
+All content is centralized in `src/data/config.ts`:
+
+```typescript
+export const SITE_CONFIG = {
+  name: 'Your Name',
+  title: 'Your Title',
+  email: 'your@email.com',
+  location: 'Your Location',
+  url: 'https://yoursite.com',
+};
+
+export const PROJECTS = [
+  {
+    id: '1',
+    title: 'Project Name',
+    description: 'Project description...',
+    image: '/images/project.png',
+    technologies: ['React', 'Node.js', 'MongoDB'],
+    githubUrl: 'https://github.com/...',
+    liveUrl: 'https://...',
+  },
+];
+
+export const SKILLS = [
+  { name: 'React', icon: 'react', category: 'frontend' },
+  // ...
+];
+```
+
+### Theme Colors
+Edit CSS variables in `src/app/globals.css`:
+
+```css
+:root {
+  --background: oklch(0.96 0.002 85);    /* Light mode */
+  --accent: oklch(0.62 0.19 45);         /* Safety Orange */
+}
+
+.dark {
+  --background: oklch(0.10 0.002 85);    /* Dark mode (Bunker) */
+}
+```
+
+---
+
+## 📦 Featured Project
+
+### Miles & Smiles V1
+Full-stack travel platform with real-time features.
+
+**Tech Stack:**
+- Frontend: React 19, Vite, Tailwind CSS
+- Backend: Node.js, Express, MongoDB, Redis
+- Real-Time: Socket.IO, BullMQ
+- DevOps: Docker, Nginx, Jest/Vitest
+
+[View Repository →](https://github.com/udaylol/Miles-and-Smiles-V1)
+
+---
+
+## 🚢 Deployment
+
+### Vercel (Recommended)
+```bash
+npm run build
+vercel --prod
+```
+
+### Docker
+```bash
+docker build -t portfolio .
+docker run -p 3000:3000 portfolio
+```
+
+---
 
 ## 📄 License
 
-MIT License - feel free to use this for your own portfolio!
+MIT © Suchet Rana
+
+---
+
+<p align="center">
+  <sub>Designed & Built with precision.</sub>
+</p>
