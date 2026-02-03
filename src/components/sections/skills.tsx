@@ -48,9 +48,9 @@ export function Skills() {
                >
                  <h2 className="text-6xl font-serif font-light mb-4">
                    Tech<br />
-                   <span className="italic text-muted-foreground">Stack</span>
+                   <span className="italic text-foreground/80">Stack</span>
                  </h2>
-                 <p className="font-mono text-xs uppercase tracking-widest text-secondary mt-2">
+                 <p className="font-mono text-xs uppercase tracking-widest text-primary font-medium mt-2">
                    // CURRENT_PROFICIENCY
                  </p>
                </motion.div>
@@ -72,9 +72,9 @@ export function Skills() {
                   viewport={{ once: true, margin: "-10%" }}
                   transition={{ duration: 0.6, delay: idx * 0.1 }}
                 >
-                  <div className="flex items-baseline gap-4 mb-8 border-b border-border/50 pb-2">
-                     <span className="font-mono text-sm text-secondary">0{categories.indexOf(category) + 1}</span>
-                     <h3 className="text-2xl font-serif font-light text-foreground/90">
+                  <div className="flex items-baseline gap-4 mb-8 border-b border-border pb-4">
+                     <span className="font-mono text-sm text-primary font-bold">0{categories.indexOf(category) + 1}</span>
+                     <h3 className="text-2xl font-serif text-foreground font-medium">
                        {categoryHeaders[category]}
                      </h3>
                   </div>
@@ -91,11 +91,12 @@ export function Skills() {
                         key={skill.name}
                         variants={itemVariants}
                         className="
-                          relative pl-3 pr-4 py-2 
-                          border border-border/40 rounded-sm
-                          bg-muted/10 hover:bg-muted/30 hover:border-secondary/50
-                          transition-colors duration-300
-                          cursor-default
+                          relative pl-3 pr-4 py-2.5 
+                          border border-border rounded-md
+                          bg-card text-foreground font-medium
+                          hover:border-primary hover:shadow-sm
+                          transition-all duration-300
+                          cursor-default flex items-center gap-2
                         "
                       >
                          <span className="font-mono text-sm text-muted-foreground group-hover:text-foreground transition-colors">

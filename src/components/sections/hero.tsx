@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { ArrowRight, Download, Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { ABOUT_TEXT, SITE_CONFIG, SOCIAL_LINKS } from "@/data/config";
 import Link from "next/link";
+import { PointerHighlight } from "@/components/ui/pointer-highlight";
+import { SparklesCore } from "@/components/ui/sparkles";
 
 export function Hero() {
   const containerVariants = {
@@ -41,9 +43,20 @@ export function Hero() {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden py-20 bg-background text-foreground">
-      {/* Background Elements */}
-      <div className="absolute inset-0 z-0 opacity-[0.03] bg-grid-pattern pointer-events-none" />
-      <div className="absolute inset-0 bg-linear-to-b from-background/0 via-background/0 to-background/80 pointer-events-none" />
+      {/* Sparkles Background Effect */}
+      <div className="absolute inset-0 w-full h-full z-0">
+        <SparklesCore
+          id="hero-sparkles"
+          background="transparent"
+          minSize={1}
+          maxSize={2}
+          particleDensity={150}
+          className="w-full h-full"
+          particleColor="#3b82f6"
+          speed={2}
+        />
+      </div>
+      <div className="absolute inset-0 bg-linear-to-b from-background/0 via-background/20 to-background pointer-events-none z-[1]" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center md:text-left">
@@ -67,7 +80,10 @@ export function Hero() {
             {/* Headline */}
             <motion.div variants={itemVariants} className="space-y-4">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground">
-                Hi, I'm <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">{SITE_CONFIG.name}</span>
+                Hi, I'm{" "}
+                <PointerHighlight containerClassName="inline-flex align-bottom">
+                  <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">{SITE_CONFIG.name}</span>
+                </PointerHighlight>
               </h1>
               <h2 className="text-2xl md:text-3xl lg:text-4xl text-muted-foreground font-light">
                 {ABOUT_TEXT.headline}
