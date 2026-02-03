@@ -46,34 +46,34 @@ export function Contact() {
           {/* Header & Info */}
           <div className="space-y-12">
             <div>
-              <h2 className="text-4xl md:text-6xl font-serif font-light leading-none mb-6">
-                Start a <br /><span className="italic text-secondary-foreground/60">Transmission</span>.
+              <h2 className="text-4xl md:text-6xl font-serif font-light leading-none mb-6 text-foreground">
+                Start a <br /><span className="italic text-primary">Conversation</span>.
               </h2>
-              <p className="font-mono text-sm text-muted-foreground uppercase tracking-widest">
+              <p className="font-mono text-sm text-primary font-medium tracking-widest">
                 // STATUS: OPEN_FOR_WORK
               </p>
             </div>
 
             <div className="space-y-8 py-8 border-y border-border/50">
               <div className="group">
-                <span className="font-mono text-xs text-muted-foreground block mb-2">TARGET_COORDINATES // EMAIL</span>
+                <span className="font-mono text-xs text-muted-foreground block mb-2">EMAIL</span>
                 <a
                   href={`mailto:${SITE_CONFIG.email}`}
-                  className="text-xl md:text-2xl font-light hover:text-accent transition-colors flex items-center gap-2"
+                  className="text-xl md:text-2xl font-light hover:text-primary transition-colors flex items-center gap-2 text-foreground"
                 >
                   {SITE_CONFIG.email}
-                  <ArrowRight className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all text-accent" size={20} />
+                  <ArrowRight className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all text-primary" size={20} />
                 </a>
               </div>
 
               <div>
-                <span className="font-mono text-xs text-muted-foreground block mb-2">BASE_STATION // LOC</span>
-                <p className="text-xl md:text-2xl font-light">{SITE_CONFIG.location}</p>
+                <span className="font-mono text-xs text-muted-foreground block mb-2">LOCATION</span>
+                <p className="text-xl md:text-2xl font-light text-foreground">{SITE_CONFIG.location}</p>
               </div>
             </div>
             
             <p className="text-muted-foreground max-w-md leading-relaxed">
-              Initiate communication protocol for collaborations, inquiries, or system diagnostics. All frequencies open.
+              I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.
             </p>
           </div>
 
@@ -88,8 +88,8 @@ export function Contact() {
                 value={formState.name}
                 onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                 required
-                className="w-full px-6 py-8 bg-transparent focus:bg-muted/5 outline-none font-serif text-xl placeholder:text-muted-foreground/50 transition-colors"
-                placeholder="IDENTIFIER_NAME"
+                className="w-full px-6 py-8 bg-transparent focus:bg-muted/5 outline-none font-sans text-lg text-foreground placeholder:text-muted-foreground transition-colors"
+                placeholder="What's your name?"
               />
             </div>
 
@@ -102,8 +102,8 @@ export function Contact() {
                 value={formState.email}
                 onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                 required
-                className="w-full px-6 py-8 bg-transparent focus:bg-muted/5 outline-none font-serif text-xl placeholder:text-muted-foreground/50 transition-colors"
-                placeholder="RETURN_ADDRESS_EMAIL"
+                className="w-full px-6 py-8 bg-transparent focus:bg-muted/5 outline-none font-sans text-lg text-foreground placeholder:text-muted-foreground transition-colors"
+                placeholder="Your email address"
               />
             </div>
 
@@ -116,8 +116,8 @@ export function Contact() {
                 onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                 required
                 rows={6}
-                className="w-full px-6 py-8 bg-transparent focus:bg-muted/5 outline-none font-serif text-xl placeholder:text-muted-foreground/50 transition-colors resize-none"
-                placeholder="DATA_PACKET_CONTENT..."
+                className="w-full px-6 py-8 bg-transparent focus:bg-muted/5 outline-none font-sans text-lg text-foreground placeholder:text-muted-foreground transition-colors resize-none"
+                placeholder="How can I help you?"
               />
             </div>
 
@@ -139,13 +139,13 @@ export function Contact() {
                 type="submit"
                 disabled={isSubmitting}
                 className="
-                  group relative px-8 py-3 bg-foreground text-background 
-                  font-mono text-sm uppercase tracking-widest 
-                  hover:bg-accent hover:text-foreground transition-colors
+                  group relative px-8 py-4 bg-primary text-primary-foreground 
+                  font-medium uppercase tracking-widest 
+                  hover:bg-primary/90 transition-all shadow-md
                   disabled:opacity-50 disabled:cursor-not-allowed
                 "
               >
-                {isSubmitting ? "SENDING..." : "TRANSMIT"}
+                {isSubmitting ? "Sending Message..." : "Send Message"}
               </button>
             </div>
           </form>
