@@ -1,7 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ABOUT_TEXT, SITE_CONFIG } from "@/data/config";
+import { ArrowRight, Download, Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { ABOUT_TEXT, SITE_CONFIG, SOCIAL_LINKS } from "@/data/config";
+import Link from "next/link";
 
 export function Hero() {
   const containerVariants = {
@@ -9,8 +11,8 @@ export function Hero() {
     visible: { 
       opacity: 1,
       transition: { 
-        staggerChildren: 0.15,
-        delayChildren: 0.3 
+        staggerChildren: 0.1,
+        delayChildren: 0.1 
       }
     }
   };
@@ -21,84 +23,111 @@ export function Hero() {
       opacity: 1, 
       y: 0,
       transition: { 
-        duration: 0.8, 
-        ease: [0.22, 1, 0.36, 1] as [number, number, number, number] // Sharp, mechanical ease
+        duration: 0.5,
+        ease: [0.4, 0, 0.2, 1] as [number, number, number, number]
       }
     }
   };
 
+  const SocialIcon = ({ name }: { name: string }) => {
+    switch (name) {
+      case 'GitHub': return <Github className="w-5 h-5" />;
+      case 'LinkedIn': return <Linkedin className="w-5 h-5" />;
+      case 'Twitter': return <Twitter className="w-5 h-5" />;
+      case 'Email': return <Mail className="w-5 h-5" />;
+      default: return null;
+    }
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Structural Grid Background */}
-      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none bg-grid-pattern" />
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden py-20 bg-background text-foreground">
+      {/* Background Elements */}
+      <div className="absolute inset-0 z-0 opacity-[0.03] bg-grid-pattern pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-b from-background/0 via-background/0 to-background/80 pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-4xl mx-auto text-center md:text-left">
           <motion.div 
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="flex flex-col gap-8"
+            className="flex flex-col items-center md:items-start space-y-8"
           >
-            {/* Primary Headline */}
-            <div className="overflow-hidden">
-              <motion.h1 
-                variants={itemVariants}
-                className="text-6xl md:text-8xl lg:text-9xl font-serif font-light leading-[0.9] tracking-tight"
-              >
-                {ABOUT_TEXT.intro} <br />
-                <span className="italic text-muted-foreground font-serif">{SITE_CONFIG.name}</span>.
-                <br /> 
-                <span className="text-4xl md:text-6xl lg:text-7xl block mt-4 text-foreground/80">
-                  {ABOUT_TEXT.headline}
+            {/* Status Badge */}
+            <motion.div variants={itemVariants}>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/50 text-secondary-foreground text-xs font-medium tracking-wide uppercase border border-border/50 backdrop-blur-sm">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
-              </motion.h1>
-            </div>
+                Available for work
+              </div>
+            </motion.div>
 
-            {/* Technical Divider */}
-            <motion.div 
-              variants={{
-                hidden: { scaleX: 0, originX: 0 },
-                visible: { scaleX: 1, transition: { duration: 1, delay: 0.5, ease: "circOut" } }
-              }}
-              className="h-px bg-border w-full mt-8" 
-            />
+            {/* Headline */}
+            <motion.div variants={itemVariants} className="space-y-4">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground">
+                Hi, I'm <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">{SITE_CONFIG.name}</span>
+              </h1>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl text-muted-foreground font-light">
+                {ABOUT_TEXT.headline}
+              </h2>
+            </motion.div>
 
-            {/* Sub-content */}
-            <div className="flex flex-col md:flex-row items-end md:items-start justify-between gap-12 pt-8">
-              <motion.div variants={itemVariants} className="max-w-md">
-                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed text-balance">
-                  {ABOUT_TEXT.description}
-                </p>
-              </motion.div>
+            {/* Description */}
+            <motion.div variants={itemVariants} className="max-w-2xl">
+              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                {ABOUT_TEXT.description}
+              </p>
+            </motion.div>
 
-              <motion.div variants={itemVariants} className="flex items-center gap-4 text-xs font-mono tracking-widest uppercase text-muted-foreground">
-                 <span className="w-2 h-2 bg-secondary rounded-none animate-pulse" /> {/* Square = Technical */}
-                 Based in {SITE_CONFIG.location} <span className="hidden md:inline">•</span> <span className="hidden md:inline">Available Worldwide</span>
-              </motion.div>
-            </div>
+            {/* CTA Buttons & Socials */}
+            <motion.div variants={itemVariants} className="flex flex-col md:flex-row items-center gap-6 pt-4 w-full md:w-auto">
+              <div className="flex gap-4 w-full md:w-auto">
+                <Link 
+                  href="#projects" 
+                  className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-primary px-8 font-medium text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:ring-2 hover:ring-primary hover:ring-offset-2 flex-1 md:flex-none"
+                >
+                  <span className="mr-2">View My Work</span>
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+                
+                {ABOUT_TEXT.resumeDriveUrl && (
+                  <a 
+                    href={ABOUT_TEXT.resumeDriveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex h-12 items-center justify-center rounded-md border border-input bg-background px-8 font-medium transition-colors hover:bg-accent hover:text-accent-foreground flex-1 md:flex-none"
+                  >
+                    <Download className="mr-2 h-4 w-4" />
+                    Resume
+                  </a>
+                )}
+              </div>
+
+               {/* Social Icons */}
+               <div className="flex items-center gap-4 border-t md:border-t-0 md:border-l border-border pt-6 md:pt-0 md:pl-6 w-full md:w-auto justify-center md:justify-start">
+                  {SOCIAL_LINKS.map((link) => (
+                    <a
+                      key={link.name}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-foreground transition-colors p-2 hover:bg-secondary/50 rounded-full"
+                      aria-label={link.name}
+                    >
+                      <SocialIcon name={link.name} />
+                    </a>
+                  ))}
+               </div>
+            </motion.div>
+
           </motion.div>
         </div>
       </div>
-
-       {/* Scroll Indicator - Mechanical Line */}
-       <motion.div 
-         initial={{ opacity: 0, height: 0 }}
-         animate={{ opacity: 1, height: "6rem" }}
-         transition={{ delay: 1.2, duration: 1, ease: "easeOut" }}
-         className="absolute bottom-0 right-8 md:right-12 w-px bg-border hidden md:block"
-       />
-       
-       <motion.div 
-         initial={{ opacity: 0 }}
-         animate={{ opacity: 1 }}
-         transition={{ delay: 1.4, duration: 1 }}
-         className="absolute bottom-12 right-12 md:right-16 hidden md:block"
-       >
-         <span className="font-mono text-[10px] tracking-widest uppercase -rotate-90 origin-bottom-right absolute bottom-0 right-0 text-muted-foreground/60">
-            System_Scroll
-         </span>
-       </motion.div>
+      
+      {/* Decorative Gradient Blob */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-blue-500/10 dark:bg-blue-400/5 blur-[100px] rounded-full pointer-events-none z-0" />
     </section>
   );
 }

@@ -130,17 +130,14 @@ body {
   font-family: var(--font-body);
   line-height: 1.7; /* increased line-height for readability */
   -webkit-font-smoothing: antialiased;
-  
-  /* Smooth Theme Transition */
-  transition: background-color 0.5s ease, color 0.5s ease;
+  cursor: url('/assets/cursor.svg') 2 2, auto;
 }
 
-/* Ensure smooth transitions for other color-dependent properties if necessary */
-/* Be cautious with performance on * selector, but for color/bg specifically it's often worth it for the effect */
-a, button, div, span, input, textarea {
+/* Smooth Theme Transition */
+* {
   transition-property: background-color, border-color, color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
+  transition-duration: 500ms;
 }
 
 h1, h2, h3, h4, h5, h6 {
